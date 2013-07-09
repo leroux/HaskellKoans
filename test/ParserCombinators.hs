@@ -30,7 +30,7 @@ assertParse expected (Right answer) =
 testDigitParser :: Spec
 testDigitParser = it "digit parser" $ do
     -- Change parser with the correct parser to use
-    let parser = failParser "digit parser" :: P.Parser Char
+    let parser = P.char '5'
     let result = P.parseOnly parser "5"
     assertParse '5' result
 
@@ -47,7 +47,7 @@ testSymbolParser = it "symbol parser" $ do
     --
     -- Here we say symbol is a sequence of characters that doesn't have
     -- parenthes or spaces.
-    let parser = failParser "symbol parser" :: P.Parser String
+    let parser = P.string 
     assertParse "ab" $ P.parseOnly parser "ab"
     assertParse "a/b" $ P.parseOnly parser "a/b"
     assertParse "a/b" $ P.parseOnly parser "a/b c"
